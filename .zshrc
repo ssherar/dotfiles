@@ -55,4 +55,6 @@ POWERLINE_SHOW_GIT_ON_RIGHT="true"
 
 POWERLINE_DETECT_SSH="true"
 
+unsetopt correct_all
+
 alias gvim="mvim"
