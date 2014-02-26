@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Download oh-my-zsh if not exists
-if [-d ~/.oh-my-zsh]
+if [ -d ~/.oh-my-zsh ]
 then
   git clone http://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 fi
