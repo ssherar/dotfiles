@@ -87,6 +87,8 @@ nmap <leader>h :noh<cr>
 """""""""""""""""""""""""""""""
 " Status line
 """""""""""""""""""""""""""""""
+set laststatus=2
+
 set statusline=%m%f\  
 set statusline+=%{fugitive#statusline()}\ 
 set statusline+=%#warningmsg#
