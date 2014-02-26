@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#initalise the submodules
+git submodule init
+git submodule update
+
 #Download oh-my-zsh if not exists
 if [ -d ~/.oh-my-zsh ]
 then
