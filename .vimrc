@@ -171,6 +171,8 @@ au FileType html,python,vim,javascript setl sw=2
 au FileType html,python,vim,javascript setl ts=2
 au FileType java setl sw=4
 au FileType java setl ts=4
+au FileType php setl sw=2
+au FileType php setl ts=2
 
 set smarttab
 set lbr
