@@ -113,43 +113,43 @@ map <C-l> <C-w>l
 
 "Sexy Sexy methods can be found here
 "http://vim.wikia.com/wiki/Making_Parenthesis_And_Brackets_Handling_Easier
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
-inoremap { {}<Esc>i
-autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
-inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap ] <c-r>=ClosePair(']')<CR>
-inoremap } <c-r>=CloseBracket()<CR>
-inoremap " <c-r>=QuoteDelim('"')<CR>
-inoremap ' <c-r>=QuoteDelim("'")<CR>
-
-function! ClosePair(char)
-  if getline('.')[col('.') - 1] == a:char
-    return "\<Right>"
-  else
-    return a:char
-  endif
-endf
-
-function! CloseBracket()
-  if match(getline(line('.') + 1), '\s*}') < 0
-    return "\<CR>}"
-  else
-    return "\<Esc>j0f}a"
-  endif
-endf
-
-function! QuoteDelim(char)
-  let line = getline('.')
-  let col = col('.')
-  if line[col - 2] == "\\"
-    return a:char
-  elseif line[col - 1] == a:char
-    return "\<Right>"
-  else
-    return a:char.a:char."\<Esc>i"
-  endif
-endf
+""inoremap ( ()<Esc>i
+""inoremap [ []<Esc>i
+""inoremap { {}<Esc>i
+""autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
+""inoremap ) <c-r>=ClosePair(')')<CR>
+""inoremap ] <c-r>=ClosePair(']')<CR>
+""inoremap } <c-r>=CloseBracket()<CR>
+""inoremap " <c-r>=QuoteDelim('"')<CR>
+""inoremap ' <c-r>=QuoteDelim("'")<CR>
+""
+""function! ClosePair(char)
+""  if getline('.')[col('.') - 1] == a:char
+""    return "\<Right>"
+""  else
+""    return a:char
+""  endif
+""endf
+""
+""function! CloseBracket()
+""  if match(getline(line('.') + 1), '\s*}') < 0
+""    return "\<CR>}"
+""  else
+""    return "\<Esc>j0f}a"
+""  endif
+""endf
+""
+""function! QuoteDelim(char)
+""  let line = getline('.')
+""  let col = col('.')
+""  if line[col - 2] == "\\"
+""    return a:char
+""  elseif line[col - 1] == a:char
+""    return "\<Right>"
+""  else
+""    return a:char.a:char."\<Esc>i"
+""  endif
+""endf
 
 """"""""""""""""""""""""""""""""
 " Buffer related
@@ -167,13 +167,12 @@ set noswapfile
 """""""""""""""""""""""""""""""
 set expandtab
 set shiftwidth=2
-au FileType html,python,vim,javascript setl sw=2
-au FileType html,python,vim,javascript setl ts=2
-au FileType java setl sw=4
-au FileType java setl ts=4
+au FileType html,vim,javascript setl sw=2
+au FileType html,vim,javascript setl ts=2
+au FileType java,python setl sw=4
+au FileType java,python setl ts=4
 au FileType php setl sw=2
 au FileType php setl ts=2
-
 set smarttab
 set lbr
 set tw=500
@@ -182,3 +181,13 @@ set si
 set cindent
 set wrap
 
+""""""""""""""""""""""""""
+" Linters
+"""""""""""""""""""""""""
+
+let g:syntastic_python_checkers = ['flake8', 'pyflakes']
+
+call vundle#begin()
+Plugin 'valloric/youcompleteme'
+Plugin 'marijnh/tern_for_vim'
+call vundle#end()
