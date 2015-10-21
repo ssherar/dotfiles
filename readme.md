@@ -14,7 +14,7 @@ This repository utilises submodules often, so manually you can install by typing
 
 Otherwise you are able to use the `bootstrap.sh` file to run this, as well as run the symlink creation/dependency download
 
-    $ git clone http://github.com/ssherar/dotfiles.git .dorfiles && cd dotfiles
+    $ git clone http://github.com/ssherar/dotfiles.git .dotfiles && cd dotfiles
     $ chmod a+x scripts/bootstrap.sh
     $ scripts/bootstrap.sh
 
