@@ -1,7 +1,7 @@
 if ! [[ ( -d $HOME/.bin && -f $HOME/.bin/antigen.zsh ) ]]; then
   echo " [x] antigen not found -- donloading"
   mkdir -p $HOME/.bin
-  curl -L https://raw.github.com/zsh-users/antigen/master/antigen.zsh > $HOME/.bin/antigen.zsh
+  curl -L https://raw.github.com/zsh-users/antigen/master/bin/antigen.zsh > $HOME/.bin/antigen.zsh
 fi
 
 source ~/.bin/antigen.zsh
