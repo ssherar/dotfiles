@@ -10,7 +10,9 @@ call plug#begin()
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'jiangmiao/auto-pairs'
-Plug 'sickill/vim-monokai'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'leafgarland/typescript-vim'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
@@ -27,9 +29,8 @@ nmap <leader>w :w!<cr>
 nmap <leader>s :source ~/.vimrc<cr>
 map <leader>cd :cd %:p:h<cr>
 
-set background=dark
 syntax enable
-colorscheme monokai
+colorscheme nord
 
 set so=7
 set cmdheight=2
