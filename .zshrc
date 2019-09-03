@@ -23,13 +23,6 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/projects
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
-#export http_proxy=""
-#export http_proxy="http://pw-emea-pitc-londonz.proxy.corporate.ge.com:80"
-export http_proxy="https://iss-emea-pitc-amsterdamz.proxy.corporate.ge.com:80"
-export https_proxy=$http_proxy
-export HTTP_PROXY=$http_proxy
-export HTTPS_PROXY=$http_proxy
-export no_proxy="localhost,.ge.com"
 export EDITOR=vim
 
 alias zcd="rm -rf ~/.zcompdump && exec zsh"
@@ -40,89 +33,25 @@ source $(which virtualenvwrapper.sh)
 
 setopt HIST_IGNORE_ALL_DUPS
 
-###-begin-ng-completion###
-#
-# ng command completion script
-#
-# Installation: ng completion 1>> ~/.bashrc 2>>&1
-#           or  ng completion 1>> ~/.zshrc 2>>&1
-#
+proxyon() {
+  export http_proxy=http://iss-emea-pitc-londonz.proxy.corporate.ge.com:80
+  export https_proxy=$http_proxy
+  export HTTP_PROXY=$http_proxy
+  export HTTPS_PROXY=$http_proxy
 
-ng_opts='b build completion doc e2e g generate get github-pages:deploy gh-pages:deploy h help i init install lint make-this-awesome new s serve server set t test v version'
+  export no_proxy="localhost,.ge.com"
+}
 
-build_opts='--aot --base-href --environment --i18n-file --i18n-format --locale --output-path --progress --sourcemap --suppress-sizes --target --vendor-chunk --verbose --watch --watcher -bh -dev -e -o -prod -sm -t -w'
-generate_opts='class component directive enum module pipe route service c cl d e m p r s --help'
-github_pages_deploy_opts='--base-href --environment --gh-token --gh-username --message --skip-build --target --user-page -bh -e -t'
-help_opts='--json --verbose -v'
-init_opts='--dry-run inline-style inline-template --link-cli --mobile --name --prefix --routing --skip-npm --source-dir --style --verbose -d -is -it -lc -n -p -sb -sd -sn -v'
-new_opts='--directory --dry-run inline-style inline-template --link-cli --mobile --prefix --routing --skip-git --skip-npm --source-dir --style --verbose -d -dir -is -it -lc -p -sb -sd -sg -sn -v'
-serve_opts='--aot --environment --hmr --host --i18n-file --i18n-format --live-reload --live-reload-base-url --live-reload-host --live-reload-live-css --live-reload-port --locale --open --port --proxy-config --sourcemap --ssl --ssl-cert --ssl-key --target --watcher -H -e -lr -lrbu -lrh -lrp -o -p -pc -sm -t -w'
-set_opts='--global -g'
-test_opts='--browsers --build --code-coverage --colors --lint --log-level --port --reporters --single-run --sourcemap --watch -cc -l -sm -sr -w'
+proxyoff() {
+  unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY no_proxy
+}
 
-version_opts='--verbose'
+ping -c 1 google.com 2>&1 > /dev/null || proxyon
+alias ssh="assh wrapper ssh"
 
-if test ".$(type -t complete 2>/dev/null || true)" = ".builtin"; then
-  _ng_completion() {
-    local cword pword opts
+alias cagol='source /usr/local/bin/cago.sh list'
+alias cagor='source /usr/local/bin/cago.sh refresh'
+alias cagos='source /usr/local/bin/cago.sh switch'
+alias cagou='source /usr/local/bin/cago.sh unset'
 
-    COMPREPLY=()
-    cword=${COMP_WORDS[COMP_CWORD]}
-    pword=${COMP_WORDS[COMP_CWORD - 1]}
-
-    case ${pword} in
-      ng) opts=$ng_opts ;;
-      b|build) opts=$build_opts ;;
-      g|generate) opts=$generate_opts ;;
-      gh-pages:deploy|github-pages:deploy) opts=$github_pages_deploy_opts ;;
-      h|help|-h|--help) opts=$help_opts ;;
-      init) opts=$init_opts ;;
-      new) opts=$new_opts ;;
-      s|serve|server) opts=$serve_opts ;;
-      set) opts=$set_opts ;;
-      t|test) opts=$test_opts ;;
-      v|version) opts=$version_opts ;;
-      *) opts='' ;;
-    esac
-
-    COMPREPLY=( $(compgen -W '${opts}' -- $cword) )
-
-    return 0
-  }
-
-  complete -o default -F _ng_completion ng
-elif test ".$(type -w compctl 2>/dev/null || true)" = ".compctl: builtin" ; then
-  _ng_completion () {
-    local words cword opts
-    read -Ac words
-    read -cn cword
-    let cword-=1
-
-    case $words[cword] in
-      ng) opts=$ng_opts ;;
-      b|build) opts=$build_opts ;;
-      g|generate) opts=$generate_opts ;;
-      gh-pages:deploy|github-pages:deploy) opts=$github_pages_deploy_opts ;;
-      h|help|-h|--help) opts=$help_opts ;;
-      init) opts=$init_opts ;;
-      new) opts=$new_opts ;;
-      s|serve|server) opts=$serve_opts ;;
-      set) opts=$set_opts ;;
-      t|test) opts=$test_opts ;;
-      v|version) opts=$version_opts ;;
-      *) opts='' ;;
-    esac
-
-    setopt shwordsplit
-    reply=($opts)
-    unset shwordsplit
-  }
-
-  compctl -K _ng_completion ng
-else
-  echo "Shell builtin command 'complete' or 'compctl' is redefined; cannot perform ng completion."
-  return 1
-fi
-
-###-end-ng-completion###
-
+export AWS_CA_BUNDLE=$HOME/.certs/bundle.pem
