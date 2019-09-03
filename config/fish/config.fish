@@ -3,4 +3,6 @@ set fish_function_path $fish_function_path "$HOME/Library/Python/3.7/lib/python/
 
 set -U fish_user_paths $HOME/Library/Python/3.7/bin $fish_user_paths
 
+eval (python -m virtualfish)
+
 powerline-setup

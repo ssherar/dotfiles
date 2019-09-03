@@ -1,0 +1,37 @@
+{
+  "segments": {
+    "right": [
+      {
+        "function": "powerline.segments.common.wthr.weather",
+        "priority": 50,
+        "args": {
+          "unit": "C",
+          "location_query": "Chesham, United Kingdom"
+        }
+      },
+      {
+        "function": "powerline.segments.common.time.date",
+        "priority": 50,
+        "args": {
+          "format": "%d/%m/%Y"
+        }
+      },
+      {
+        "function": "powerline.segments.common.time.date",
+        "priority": 10,
+        "args": {
+          "format": "%H:%M",
+          "istime": "true"
+        },
+        "after": " 🕐"
+      },
+      {
+        "function": "powerline.segments.common.bat.battery",
+        "priority": 20,
+        "args": {
+          "offline": "🔋 "
+        }
+      }
+    ]
+  }
+}

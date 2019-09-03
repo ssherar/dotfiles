@@ -1,0 +1,39 @@
+{
+  "segments": {
+    "left":  [
+      {
+        "function": "powerline.segments.common.net.hostname",
+        "priority": 40,
+        "args": {
+          "only_if_ssh": true
+        }
+      },
+      {
+        "function": "powerline.segments.common.env.user",
+        "priority": 50,
+        "args": {
+          "hide_user": "sbsherar"
+        }
+      },
+      {
+        "function": "powerline.segments.common.env.virtualenv",
+        "priority": 10
+      },
+      {
+        "function": "powerline.segments.shell.cwd",
+        "priority": 10,
+        "args": {
+          "dir_limit_depth": 3
+        }
+      }
+    ],
+    "right": [
+      {
+        "function": "powerline.segments.shell.last_status"
+      },
+      {
+        "function": "powerline_gitstatus.gitstatus"
+      }
+    ]
+  }
+}
