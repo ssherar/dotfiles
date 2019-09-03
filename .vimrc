@@ -9,6 +9,7 @@ call plug#begin()
 
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'leafgarland/typescript-vim'
@@ -90,3 +91,4 @@ set wrap
 
 
 let g:syntastic_python_checkers = ['flake8', 'pyflakes']
+map <C-n> :NERDTreeToggle<CR>
