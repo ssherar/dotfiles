@@ -16,7 +16,7 @@ Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
-set shell=zsh
+set shell=fish
 set history=400
 filetype plugin indent on
 
@@ -47,17 +47,11 @@ set t_vb=
 set showmatch
 set wildmenu
 set hlsearch
-nmap <leader>h :noh<cr>
-
+set mouse=a
 
 set laststatus=2
 
-set statusline=%m%f\  
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*\ %=
-set statusline+=Line:%l/%L[%p%%]
-set statusline+=\ Col:%c
+nmap <leader>h :noh<cr>
 
 map <C-j> <C-w>j
 map <C-k> <C-w>k
@@ -91,3 +85,7 @@ set wrap
 
 let g:syntastic_python_checkers = ['flake8', 'pyflakes']
 map <C-n> :NERDTreeToggle<CR>
+
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
