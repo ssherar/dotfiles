@@ -11,7 +11,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'leafgarland/typescript-vim'
 Plug 'arcticicestudio/nord-vim'
 
