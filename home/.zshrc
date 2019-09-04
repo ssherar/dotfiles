@@ -33,25 +33,4 @@ source $(which virtualenvwrapper.sh)
 
 setopt HIST_IGNORE_ALL_DUPS
 
-proxyon() {
-  export http_proxy=http://iss-emea-pitc-londonz.proxy.corporate.ge.com:80
-  export https_proxy=$http_proxy
-  export HTTP_PROXY=$http_proxy
-  export HTTPS_PROXY=$http_proxy
-
-  export no_proxy="localhost,.ge.com"
-}
-
-proxyoff() {
-  unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY no_proxy
-}
-
-ping -c 1 google.com 2>&1 > /dev/null || proxyon
 alias ssh="assh wrapper ssh"
-
-alias cagol='source /usr/local/bin/cago.sh list'
-alias cagor='source /usr/local/bin/cago.sh refresh'
-alias cagos='source /usr/local/bin/cago.sh switch'
-alias cagou='source /usr/local/bin/cago.sh unset'
-
-export AWS_CA_BUNDLE=$HOME/.certs/bundle.pem
