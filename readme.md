@@ -1,21 +1,36 @@
-Dotfiles
-========
+# Dotfiles
 
-My incredibly precious dotfiles which I transfer between computer and server alot. 
+**Newer, greater, better dotfiles! The best ever dotfiles ever created!**
 
-Installing
-----------
+_absolutely not - it just suits my needs and aren't half broken!_
 
-This repository utilises submodules often, so manually you can install by typing
+These are my basic dotfiles dedicated for setting up my MacOS development machine, using ansible, homebrew and others.
 
-    $ git clone http://github.com/ssherar/dotfiles.git .dotfiles && cd .dotfiles
-    $ git submodule init
-    $ git submodule update
+## What is installed?
 
-Otherwise you are able to use the `bootstrap.sh` file to run this, as well as run the symlink creation/dependency download
+- Applications
+  - Visual Studio Code
+  - Spotify
+  - Google Chrome
+  - and more if they are appended to the `homebrew_cask_apps` list in `vars.yml`
+- Commandline tools
+  - tmux
+  - python3
+  - fish
+  - jq
+  - vim8.1
+  - latest node
+  - and more if they are appended to the `homebrew_installed_packages` list in `vars.yml`
+- PIP Packages
+  - Virutalenv
+  - Virtualfish
+  - Powerline-status
+  - powerline-gitstatus
 
-    $ git clone http://github.com/ssherar/dotfiles.git .dotfiles && cd dotfiles
-    $ chmod a+x scripts/bootstrap.sh
-    $ scripts/bootstrap.sh
+Also my standard configurations for TMUX, VIM, iTerm, fish and powerline are also copied over
 
+## Installation
 
+1. Install ansbile onto your machine
+2. Run `./run.sh`
+3. Load up iTerm preferences and import the settings file in `~/.config/iterm.json`
