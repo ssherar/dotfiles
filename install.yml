@@ -1,0 +1,71 @@
+---
+- hosts: local
+  connection: local
+
+  vars_files:
+    - vars.yml
+
+  roles:
+    - role: geerlingguy.homebrew
+      tags:
+        - homebrew
+
+  tasks:
+    - name: Copy .config directory
+      copy:
+        src: config/
+        dest: ~/.config/
+      tags:
+        - configs
+
+    - name: Copy dotfiles
+      copy:
+        src: home/
+        dest: ~/
+      tags:
+        - configs
+
+    - name: Install pip modules
+      pip:
+        name:
+        - virtualenv
+        - powerline-status
+        - powerline-gitstatus
+        - virtualfish
+      tags:
+        - pip
+
+    - name: Add fish to the available shells
+      shell: "echo '/usr/local/bin/fish' | tee -a /etc/shells"
+      become: yes
+      tags: 
+        - fish
+
+    - name: Change shell to fish
+      shell: 'chsh -s /user/local/bin/fish {{ ansible_user_id }}'
+      become: yes
+      tags:
+        - fish
+
+
+    - name: Clone powerline fonts
+      git: repo=git://github.com/powerline/fonts.git dest=/tmp/powerline-fonts version=master
+      tags:
+        - powerline
+        - terminal
+
+    - name: Install powerline fonts
+      shell: bash /tmp/powerline-fonts/install.sh
+      tags:
+        - powerline
+        - terminal
+
+    - name: Download Vim-Plug
+      shell: curl --create-dirs -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
+      tags:
+        - vim
+
+    - name: Install vim plugins
+      shell: vim +'PlugInstall --sync' +qa
+      tags:
+        - vim
