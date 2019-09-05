@@ -42,7 +42,7 @@
         - fish
 
     - name: Change shell to fish
-      shell: 'chsh -s /user/local/bin/fish {{ ansible_user_id }}'
+      shell: 'chsh -s /usr/local/bin/fish {{ ansible_user_id }}'
       become: yes
       tags:
         - fish
